@@ -60,5 +60,14 @@
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
 		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.5" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Data\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="PageModels\" />
+	  <Folder Include="Pages\Controls\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Utilities\" />
+	</ItemGroup>
 	
 </Project>
