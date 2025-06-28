@@ -6,28 +6,46 @@
 			 x:DataType="pageModel:MainPagePM"
              x:Class="Seiko.Pages.MainPage"
              Title="{Binding Title}">
-
 	<Grid ColumnDefinitions="*,*"
 			RowDefinitions="*,Auto"
 			ColumnSpacing="5"
-			RowSpacing="0"
 			>
-
-		<CollectionView BackgroundColor="Transparent"
+		<CollectionView BackgroundColor="LightGreen"
 						Grid.ColumnSpan="2"
 						Margin="8"
 						ItemsSource="{Binding Monkeys}"
-						SelectionMode="None"
+						SelectionMode="Single"
 						>
 			<CollectionView.ItemTemplate>
 				<DataTemplate x:DataType="model:Monkey">
 					<Grid Padding="10">
-						<Frame HeightRequest="125">
-							<Label Text="{Binding Name}"/>
+						<Frame HeightRequest="125"
+								Padding="0"
+							   >
+							<Grid 
+								Padding="0"
+								ColumnSpacing="10"
+								ColumnDefinitions="125,*"
+								VerticalOptions="CenterAndExpand"
+								  >
+								<Image Aspect="AspectFill"
+									   Source="{Binding Image}"
+									   WidthRequest="125"
+									   HeightRequest="125"
+									   />
+								<VerticalStackLayout
+									Grid.Column="1"
+									VerticalOptions="CenterAndExpand"
+									>
+									<Label Text="{Binding Name}"
+										/>
+									<Label Text="{Binding Location}"
+										/>
+								</VerticalStackLayout>
+							</Grid>
 						</Frame>
 					</Grid>
 				</DataTemplate>
-					
 			</CollectionView.ItemTemplate>
 		</CollectionView>
 

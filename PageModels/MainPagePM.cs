@@ -2,7 +2,6 @@
 using Seiko.Models;
 using Seiko.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace Seiko.PageModels
 {
@@ -11,8 +10,6 @@ namespace Seiko.PageModels
         MonkeyDetailsService _monkeyService;
 
         public ObservableCollection<Monkey> Monkeys { get; } = new();
-
-        public Command GetMonkeysCommand { get; }
 
         public MainPagePM(MonkeyDetailsService monkeyService)
         {
@@ -30,8 +27,8 @@ namespace Seiko.PageModels
             {
                 IsBusy = true;
                 var monkeyDetails = await _monkeyService.GetDetails();
-                Debug.WriteLine("success");
 
+                // refresh list
                 if (Monkeys.Count != 0)
                     Monkeys.Clear();
 
