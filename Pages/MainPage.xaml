@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:model="clr-namespace:Seiko.Models"
+			 xmlns:pageModel="clr-namespace:Seiko.PageModels"
+			 x:DataType="pageModel:MainPagePM"
+             x:Class="Seiko.Pages.MainPage"
+             Title="{Binding Title}">
+
+	<Grid ColumnDefinitions="*,*"
+			RowDefinitions="*,Auto"
+			ColumnSpacing="5"
+			RowSpacing="0"
+			>
+
+		<CollectionView BackgroundColor="Transparent"
+						Grid.ColumnSpan="2"
+						Margin="8"
+						ItemsSource="{Binding Monkeys}"
+						SelectionMode="None"
+						>
+			<CollectionView.ItemTemplate>
+				<DataTemplate x:DataType="model:Monkey">
+					<Grid Padding="10">
+						<Frame HeightRequest="125">
+							<Label Text="{Binding Name}"/>
+						</Frame>
+					</Grid>
+				</DataTemplate>
+					
+			</CollectionView.ItemTemplate>
+		</CollectionView>
+
+		<Button Text="details"
+				Command="{Binding GetMonkeyDetailsCommand}"
+				IsEnabled="{Binding IsNotBusy}"
+				Grid.Row="1"
+				Margin="8"
+				/>
+		<ActivityIndicator IsVisible="{Binding IsBusy}"
+							IsRunning="{Binding IsBusy}"
+							HorizontalOptions="FillAndExpand"
+							VerticalOptions="CenterAndExpand"
+							Grid.RowSpan="2"
+							Grid.ColumnSpan="2"
+							/>
+	</Grid>
+</ContentPage>

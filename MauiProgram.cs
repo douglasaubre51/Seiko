@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Seiko.PageModels;
+using Seiko.Services;
 using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace Seiko
@@ -25,6 +27,9 @@ namespace Seiko
             builder.Logging.AddDebug();
             builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
+
+            builder.Services.AddSingleton<MonkeyDetailsService>();
+            builder.Services.AddSingleton<MainPagePM>();
 
             return builder.Build();
         }
