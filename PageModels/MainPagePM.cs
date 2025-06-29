@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Seiko.Models;
+using Seiko.Pages;
 using Seiko.Services;
 using System.Collections.ObjectModel;
 
@@ -15,6 +16,21 @@ namespace Seiko.PageModels
         {
             Title = "Details";
             _monkeyService = monkeyService;
+        }
+
+        [RelayCommand]
+        async Task GoToMonkeyDetailsAsync(Monkey monkey)
+        {
+            if (monkey is null) return;
+
+            await Shell.Current.GoToAsync(
+                $"{nameof(DetailsPage)}",
+                true,
+                new Dictionary<string, object>
+                {
+                    {"Monkey",monkey}
+                }
+                );
         }
 
         [RelayCommand]

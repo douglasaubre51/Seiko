@@ -28,8 +28,12 @@ namespace Seiko
             builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
 
+            // middlewares
             builder.Services.AddSingleton<MonkeyDetailsService>();
-            builder.Services.AddSingleton<MainPagePM>();
+
+            // page models
+            builder.Services.AddTransient<MainPagePM>();
+            builder.Services.AddTransient<DetailsPM>();
 
             return builder.Build();
         }

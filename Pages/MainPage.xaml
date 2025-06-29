@@ -5,12 +5,13 @@
 			 xmlns:pageModel="clr-namespace:Seiko.PageModels"
 			 x:DataType="pageModel:MainPagePM"
              x:Class="Seiko.Pages.MainPage"
+			 x:Name="RootView"
              Title="{Binding Title}">
 	<Grid ColumnDefinitions="*,*"
 			RowDefinitions="*,Auto"
 			ColumnSpacing="5"
 			>
-		<CollectionView BackgroundColor="LightGreen"
+		<CollectionView BackgroundColor="Transparent"
 						Grid.ColumnSpan="2"
 						Margin="8"
 						ItemsSource="{Binding Monkeys}"
@@ -22,6 +23,13 @@
 						<Frame HeightRequest="125"
 								Padding="0"
 							   >
+							<Frame.GestureRecognizers>
+								<TapGestureRecognizer 
+													  Command="{Binding Path=GoToMonkeyDetailsCommand,Source={RelativeSource AncestorType={x:Type pageModel:MainPagePM}},x:DataType=pageModel:MainPagePM }"
+														CommandParameter="{Binding .}"
+														/>
+
+							</Frame.GestureRecognizers>
 							<Grid 
 								Padding="0"
 								ColumnSpacing="10"
