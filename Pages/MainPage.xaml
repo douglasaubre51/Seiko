@@ -22,6 +22,7 @@
 					<Grid Padding="10">
 						<Frame HeightRequest="125"
 								Padding="0"
+								IsEnabled="{Binding IsNotBusy,Source={RelativeSource AncestorType={x:Type pageModel:MainPagePM}},x:DataType=pageModel:MainPagePM}"
 							   >
 							<Frame.GestureRecognizers>
 								<TapGestureRecognizer 
@@ -61,10 +62,16 @@
 				Command="{Binding GetMonkeyDetailsCommand}"
 				IsEnabled="{Binding IsNotBusy}"
 				Grid.Row="1"
-				Grid.ColumnSpan="2"
 				Margin="8"
 				/>
-		<ActivityIndicator IsVisible="{Binding IsBusy}"
+        <Button Text="fetch closest monkey"
+				Command="{Binding GetClosestMonkeyCommand}"	
+				IsEnabled="{Binding IsNotBusy}"
+				Grid.Row="1"
+				Grid.Column="1"
+				Margin="8"
+                />
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
 							IsRunning="{Binding IsBusy}"
 							HorizontalOptions="FillAndExpand"
 							VerticalOptions="CenterAndExpand"
