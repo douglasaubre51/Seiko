@@ -9,10 +9,10 @@
 
 	<ScrollView>
 		<Grid ColumnDefinitions="*,*"
+			Padding="20,20"
 				  >
 			<!-- details -->
-			<VerticalStackLayout Padding="20,20"
-							 Spacing="30"
+			<VerticalStackLayout 
 							 Grid.Column="0"
 							 Grid.Row="0"
 			>
@@ -68,9 +68,9 @@
 			</VerticalStackLayout>
 			<!-- image -->
 			<Image Source="{Binding Monkey.Image}"
-				Aspect="Fill"
-				Grid.Column="1"
-				   />
+					Aspect="Fill"
+					Grid.Column="1"
+			/>
 		</Grid>
 
 	</ScrollView>
