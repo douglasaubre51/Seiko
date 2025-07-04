@@ -16,6 +16,9 @@ namespace Seiko.PageModels
         MonkeyDetailsService _monkeyService;
         public ObservableCollection<Monkey> Monkeys { get; } = new();
 
+        [ObservableProperty]
+        bool isRefreshing;
+
         public MainPagePM(MonkeyDetailsService monkeyService, IConnectivity connectivity, IGeolocation geolocation)
         {
             Title = "Monkeys";
@@ -59,6 +62,7 @@ namespace Seiko.PageModels
 
                 if (first is null) return;
 
+                IsBusy = false;
                 await Shell.Current.DisplayAlertAsync("found", $"closest monkey is {first.Name} at {first.Location}", "ok");
 
             }
@@ -119,6 +123,7 @@ namespace Seiko.PageModels
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }
         }
     }

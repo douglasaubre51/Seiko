@@ -7,63 +7,112 @@
              x:Class="Seiko.Pages.MainPage"
 			 x:Name="RootView"
              Title="{Binding Title}">
-	<Grid ColumnDefinitions="*,*"
-			RowDefinitions="*,Auto"
+
+    <!-- header -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="refresh"
+					Command="{Binding GetMonkeyDetailsCommand}"
+					IsEnabled="{Binding IsNotBusy}"
+                     />
+    </ContentPage.ToolbarItems>
+
+    <!-- main layout -->
+    <Grid ColumnDefinitions="*,*"
+			RowDefinitions="*,60"
 			ColumnSpacing="5"
+            HorizontalOptions="FillAndExpand"
 			>
-		<CollectionView BackgroundColor="Transparent"
-						Grid.ColumnSpan="2"
+
+        <!-- refresh tool for mobile -->
+        <RefreshView Grid.ColumnSpan="2"
+					Grid.Row="0"
+					Command="{Binding GetMonkeyDetailsCommand}"
+					IsRefreshing="{Binding IsRefreshing}"
+					HorizontalOptions="FillAndExpand"
+					>
+
+            <!-- templates container -->
+            <CollectionView BackgroundColor="Transparent"
 						Margin="8"
 						ItemsSource="{Binding Monkeys}"
-						SelectionMode="None"
+						SelectionMode="Single"
+						HorizontalOptions="FillAndExpand"
 						>
-			<CollectionView.ItemTemplate>
-				<DataTemplate x:DataType="model:Monkey">
-					<Grid Padding="10">
-						<Frame HeightRequest="125"
-								Padding="0"
+
+                <!-- empty list template -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        >
+                        <Label
+                            Text="click fetch to get started!"
+                            FontSize="20"
+                            TextColor="LightGray"
+                            />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <!-- responsive layout -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        VerticalItemSpacing="10"
+                        HorizontalItemSpacing="10"
+                        Span="{OnIdiom Desktop=2,Default=1}"
+                        >
+                    </GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <!-- item template container -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Monkey">
+
+                        <!-- item -->
+                        <Frame Padding="0"
 								IsEnabled="{Binding IsNotBusy,Source={RelativeSource AncestorType={x:Type pageModel:MainPagePM}},x:DataType=pageModel:MainPagePM}"
+                                MinimumWidthRequest="600"
 							   >
-							<Frame.GestureRecognizers>
-								<TapGestureRecognizer 
-													  Command="{Binding Path=GoToMonkeyDetailsCommand,Source={RelativeSource AncestorType={x:Type pageModel:MainPagePM}},x:DataType=pageModel:MainPagePM }"
+                            <Frame.GestureRecognizers>
+                                <!-- register tap event -->
+                                <TapGestureRecognizer Command="{Binding Path=GoToMonkeyDetailsCommand,Source={RelativeSource AncestorType={x:Type pageModel:MainPagePM}},x:DataType=pageModel:MainPagePM }"
 														CommandParameter="{Binding .}"
 														/>
 
-							</Frame.GestureRecognizers>
-							<Grid 
-								Padding="0"
+                            </Frame.GestureRecognizers>
+
+                            <!-- inside item template -->
+                            <Grid Padding="0"
 								ColumnSpacing="10"
-								ColumnDefinitions="125,*"
-								VerticalOptions="CenterAndExpand"
+								ColumnDefinitions="125,3*"
 								  >
-								<Image Aspect="AspectFill"
+                                <Image Aspect="AspectFill"
 									   Source="{Binding Image}"
 									   WidthRequest="125"
 									   HeightRequest="125"
 									   />
-								<VerticalStackLayout
-									Grid.Column="1"
-									VerticalOptions="CenterAndExpand"
-									>
-									<Label Text="{Binding Name}"
-										/>
-									<Label Text="{Binding Location}"
-										/>
-								</VerticalStackLayout>
-							</Grid>
-						</Frame>
-					</Grid>
-				</DataTemplate>
-			</CollectionView.ItemTemplate>
-		</CollectionView>
 
-		<Button Text="fetch"
+                                <!-- inside details layout -->
+                                <VerticalStackLayout Grid.Column="1"
+														 VerticalOptions="CenterAndExpand"
+															>
+                                    <Label Text="{Binding Name}"
+										/>
+                                    <Label Text="{Binding Location}"
+										/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Button Text="fetch"
 				Command="{Binding GetMonkeyDetailsCommand}"
 				IsEnabled="{Binding IsNotBusy}"
 				Grid.Row="1"
 				Margin="8"
 				/>
+
         <Button Text="fetch closest monkey"
 				Command="{Binding GetClosestMonkeyCommand}"	
 				IsEnabled="{Binding IsNotBusy}"
@@ -71,12 +120,13 @@
 				Grid.Column="1"
 				Margin="8"
                 />
+
         <ActivityIndicator IsVisible="{Binding IsBusy}"
 							IsRunning="{Binding IsBusy}"
-							HorizontalOptions="FillAndExpand"
-							VerticalOptions="CenterAndExpand"
+							HorizontalOptions="CenterAndExpand"
+							VerticalOptions="StartAndExpand"
 							Grid.RowSpan="2"
 							Grid.ColumnSpan="2"
 							/>
-	</Grid>
+    </Grid>
 </ContentPage>

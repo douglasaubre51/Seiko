@@ -15,6 +15,8 @@
 			<VerticalStackLayout 
 							 Grid.Column="0"
 							 Grid.Row="0"
+							 Spacing="40"
+							 Margin="8"
 			>
 				<Label Text="{Binding Monkey.Details}"
 					FontSize="16"
@@ -65,7 +67,12 @@
 					Grid.Column="1"
 					/>
 				</Grid>
-			</VerticalStackLayout>
+				<!-- map -->
+                <Button Text="locate"
+						Command="{Binding OpenMapCommand}"
+						HorizontalOptions="Start"
+						/>
+            </VerticalStackLayout>
 			<!-- image -->
 			<Image Source="{Binding Monkey.Image}"
 					Aspect="Fill"
