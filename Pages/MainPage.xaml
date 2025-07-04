@@ -15,7 +15,7 @@
 						Grid.ColumnSpan="2"
 						Margin="8"
 						ItemsSource="{Binding Monkeys}"
-						SelectionMode="Single"
+						SelectionMode="None"
 						>
 			<CollectionView.ItemTemplate>
 				<DataTemplate x:DataType="model:Monkey">
@@ -57,10 +57,11 @@
 			</CollectionView.ItemTemplate>
 		</CollectionView>
 
-		<Button Text="details"
+		<Button Text="fetch"
 				Command="{Binding GetMonkeyDetailsCommand}"
 				IsEnabled="{Binding IsNotBusy}"
 				Grid.Row="1"
+				Grid.ColumnSpan="2"
 				Margin="8"
 				/>
 		<ActivityIndicator IsVisible="{Binding IsBusy}"

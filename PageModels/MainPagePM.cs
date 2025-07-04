@@ -9,12 +9,12 @@ namespace Seiko.PageModels
     public partial class MainPagePM : BasePM
     {
         MonkeyDetailsService _monkeyService;
-
         public ObservableCollection<Monkey> Monkeys { get; } = new();
 
         public MainPagePM(MonkeyDetailsService monkeyService)
         {
-            Title = "Details";
+            Title = "Monkeys";
+
             _monkeyService = monkeyService;
         }
 
