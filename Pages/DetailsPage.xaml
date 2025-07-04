@@ -8,14 +8,15 @@
 			 >
 
 	<ScrollView>
-		<Grid ColumnDefinitions="*,*"
-			Padding="20,20"
-				  >
 			<!-- details -->
 			<VerticalStackLayout 
-							 Grid.Column="0"
-							 Grid.Row="0"
+					Padding="20,20"
+					Spacing="40"
 			>
+			<Image Source="{Binding Monkey.Image}"
+					Aspect="Fill"
+			/>
+
 				<Label Text="{Binding Monkey.Details}"
 					FontSize="16"
 				/>
@@ -67,11 +68,5 @@
 				</Grid>
 			</VerticalStackLayout>
 			<!-- image -->
-			<Image Source="{Binding Monkey.Image}"
-					Aspect="Fill"
-					Grid.Column="1"
-			/>
-		</Grid>
-
 	</ScrollView>
 </ContentPage>
