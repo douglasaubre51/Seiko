@@ -1,8 +1,10 @@
-﻿using Seiko.Models;
+﻿using Microsoft.Maui.Controls.Internals;
+using Seiko.Models;
 using System.Net.Http.Json;
 
 namespace Seiko.Services
 {
+    [Preserve(AllMembers = true)]
     public class MonkeyDetailsService
     {
         HttpClient httpClient;

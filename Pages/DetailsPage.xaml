@@ -14,7 +14,7 @@
 			<!-- details -->
 			<VerticalStackLayout 
 							 Grid.Column="0"
-							 Grid.Row="0"
+							 Grid.Row="{OnIdiom Desktop=0,Default=1}"
 							 Spacing="40"
 							 Margin="8"
 			>
@@ -76,7 +76,8 @@
 			<!-- image -->
 			<Image Source="{Binding Monkey.Image}"
 					Aspect="Fill"
-					Grid.Column="1"
+					Grid.Column="{OnIdiom Desktop=1,Default=0}"
+					Grid.Row="{OnIdiom Desktop=0,Default=0}"
 			/>
 		</Grid>
 

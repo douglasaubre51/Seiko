@@ -42,6 +42,7 @@
                 <!-- empty list template -->
                 <CollectionView.EmptyView>
                     <VerticalStackLayout
+                        Padding="20"
                         >
                         <Label
                             Text="click fetch to get started!"
