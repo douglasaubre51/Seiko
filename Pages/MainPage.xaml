@@ -21,6 +21,7 @@
 			RowDefinitions="*,60"
 			ColumnSpacing="5"
             HorizontalOptions="FillAndExpand"
+            Margin="10"
 			>
 
         <!-- refresh tool for mobile -->

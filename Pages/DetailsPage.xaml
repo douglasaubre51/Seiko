@@ -7,17 +7,17 @@
              Title="{Binding Monkey.Name}"
 			 >
 
-	<ScrollView>
-		<Grid ColumnDefinitions="*,*"
-			Padding="20,20"
-				  >
+	<ScrollView
+		Margin="20"
+        >
 			<!-- details -->
 			<VerticalStackLayout 
-							 Grid.Column="0"
-							 Grid.Row="{OnIdiom Desktop=0,Default=1}"
-							 Spacing="40"
-							 Margin="8"
+							 Spacing="30"
+							 VerticalOptions="FillAndExpand"
 			>
+			<Image Source="{Binding Monkey.Image}"
+					Aspect="Fill"
+			/>
 				<Label Text="{Binding Monkey.Details}"
 					FontSize="16"
 				/>
@@ -70,16 +70,9 @@
 				<!-- map -->
                 <Button Text="locate"
 						Command="{Binding OpenMapCommand}"
-						HorizontalOptions="Start"
+						HorizontalOptions="FillAndExpand"
 						/>
             </VerticalStackLayout>
 			<!-- image -->
-			<Image Source="{Binding Monkey.Image}"
-					Aspect="Fill"
-					Grid.Column="{OnIdiom Desktop=1,Default=0}"
-					Grid.Row="{OnIdiom Desktop=0,Default=0}"
-			/>
-		</Grid>
-
 	</ScrollView>
 </ContentPage>
