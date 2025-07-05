@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android</TargetFrameworks>
+		<PublishReadyToRun>false</PublishReadyToRun>
 		<RuntimeIdentifier Condition="'$(TargetFramework)'=='net10.0-android'">android-arm64</RuntimeIdentifier>
 
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
@@ -48,9 +49,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
-	  <TrimMode>link</TrimMode>
 	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <RunAOTCompilation>True</RunAOTCompilation>
+	  <RunAOTCompilation>true</RunAOTCompilation>
 	</PropertyGroup>
 
 	<ItemGroup>

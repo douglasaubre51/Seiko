@@ -118,7 +118,11 @@ namespace Seiko.PageModels
             }
             catch (Exception e)
             {
-                await Shell.Current.DisplayAlertAsync("error", "error fetching monkeys!", "ok");
+                await Shell.Current.DisplayAlertAsync(
+                    "error",
+                    $"error fetching monkeys!\n {e}",
+                    "ok"
+                    );
             }
             finally
             {
